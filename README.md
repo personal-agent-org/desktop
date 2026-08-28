@@ -1,35 +1,25 @@
-# `pa` — Personal Agent chat clients
+# Personal Agent Desktop
 
-One repository and one binary for the terminal and desktop chat experiences:
+`pagui` is the native Personal Agent desktop chat client. It opens a self-hosted Personal Agent
+instance in a native Tauri window and adds desktop notifications, a tray, autostart, and local
+Computer Service management.
 
-```bash
-pa                      # terminal chat UI (default)
-pa login --server …     # terminal login
-pa logout
-pa gui                  # desktop window (GUI-enabled build)
-```
-
-Desktop/TUI configuration is stored only per user under
-`~/.config/personal-agent/desktop/`. It is never loaded from `/etc`.
-
-Both surfaces are clients of the same HTTP/SSE/control-WebSocket API. They do not announce tools,
-sensors, filesystem access, or other host functions to the backend. Computer capabilities are
-provided exclusively by the separate
+The selected instance is stored only for the current user under
+`~/.config/personal-agent/desktop/`. The desktop app owns no terminal credentials and shares no
+chat token with either the [`tui`](https://github.com/personal-agent-org/tui) or
 [`computer-service`](https://github.com/personal-agent-org/computer-service).
 
-Both clients offer installation of that separate background service as the `pacs` command: the
-desktop from Settings, the TUI through `/computer-service [device name]`. The service runs as its
-own process with its own device-bound credential. Desktop/TUI chat tokens are never shared with it.
+The desktop client consumes the web and chat APIs. It does not expose tools, sensors, filesystem
+access, or other host capabilities. Installing Computer Service from the app starts the separate
+`pacs` process with its own device-bound credential.
 
-## Builds
+## Build
 
-- **Terminal:** `cargo build --release` or `just build`. No webview dependency.
-- **Desktop:** `cargo build --release --features gui` or `just build-gui`. Uses Tauri and the
-  platform webview.
+On Linux, install the Tauri system dependencies and run:
 
-## Layout
+```bash
+cd crates/pagui
+cargo tauri build
+```
 
-- `crates/pa`: binary and command dispatch
-- `crates/pa-tui`: terminal chat client
-- `crates/pa-gui`: desktop chat shell and local Computer Service management
-- `crates/pa-oidc`: chat-client device-flow authentication
+The executable is named `pagui`.

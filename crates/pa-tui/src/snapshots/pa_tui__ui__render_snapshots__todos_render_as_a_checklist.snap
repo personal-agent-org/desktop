@@ -1,7 +1,0 @@
----
-source: crates/pa-tui/src/ui.rs
-expression: plain(&out)
----
-    [x] Snapshot-Tests
-    [~] Clipboard
-    [ ] Skills

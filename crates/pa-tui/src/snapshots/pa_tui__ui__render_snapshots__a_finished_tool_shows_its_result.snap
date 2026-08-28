@@ -1,6 +1,0 @@
----
-source: crates/pa-tui/src/ui.rs
-expression: plain(&out)
----
-  ✓ *read_file*  src/main.rs
-    fn main() {}

@@ -69,7 +69,7 @@ jobs:
           jq --arg version "$VERSION" '.version = $version' \
             crates/pagui/tauri.conf.json > crates/pagui/tauri.conf.json.tmp
           mv crates/pagui/tauri.conf.json.tmp crates/pagui/tauri.conf.json
-      - uses: tauri-apps/tauri-action@v0
+      - uses: tauri-apps/tauri-action@v1
         env:
           APPIMAGE_EXTRACT_AND_RUN: "1"
           NO_STRIP: "true"

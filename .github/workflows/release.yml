@@ -20,7 +20,7 @@ jobs:
     outputs:
       value: ${{ steps.calver.outputs.value }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Compute CalVer
@@ -44,7 +44,7 @@ jobs:
     needs: [ci, version]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: dtolnay/rust-toolchain@stable
       - name: Install bundle dependencies
         run: |
@@ -94,7 +94,7 @@ jobs:
     needs: [version, bundle-linux]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/download-artifact@v4
         with:
           name: linux-bundles
